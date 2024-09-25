@@ -26,13 +26,18 @@ class StoreConfigMotosPost extends FormRequest
         return [
             //
             'modelo'        => 'required|string|max:500',
+            'nome'          => 'required|string|max:500',
             'marca'         => 'required|string|max:500',
+            'nome_dono'     => 'required|string|max:500',
             'cor'           => 'required|string|max:50',
             'status'        => 'required|boolean',
             'token'         => 'required',
             'anexo'         => 'required|string',
-            'observacoes'   => 'required|text|max:500',
-            'deleted'       => 'required',
+            'observacao'    => 'required|text|max:500',
+            'deleted'       => 'required|string',
+            'ano_fabricacao'=> 'required',
+            'quilometragem' => 'required|string',
+            'garantia'      => 'required|string',
             'created_at'    => 'required|date_format:Y-m-d H:i:s',
             'updated_at'    => 'required|date_format:Y-m-d H:i:s',
         ];

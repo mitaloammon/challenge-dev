@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Models\Office;
 use Illuminate\Http\Request;
+use Illuminate\Http\Requests\StoreConfigMotosPost;
 use Illuminate\Support\Arr;
 use Inertia\Inertia;
+use App\Models\ConfigMoto;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Illuminate\Support\Facades\Storage;
@@ -20,6 +22,8 @@ class ConfigMotos extends Controller
 {
     public function index(Request $request)
     {
+
+
         $Modulo = "ConfigMotos";
 
         $permUser = Auth::user()->hasPermissionTo("list.ConfigMotos");
@@ -45,6 +49,7 @@ class ConfigMotos extends Controller
                 }
 
                 $arrayFilter = $Filtros->TratamentoDeFiltros($request->input(), $Limpar, ["ConfigMotos"]);
+                
                 if ($arrayFilter) {
                     session(["ConfigMotos" => $arrayFilter]);
                     $data = Session::all();
@@ -75,6 +80,10 @@ class ConfigMotos extends Controller
                 $AplicaFiltro = $data["ConfigMotos"]["nome"];
                 $ConfigMotos = $ConfigMotos->Where("config_motos.nome",  "like", "%" . $AplicaFiltro . "%");
             }
+            if (isset($data["ConfigMotos"]["nome_dono"])) {
+                $AplicaFiltro = $data["ConfigMotos"]["nome_dono"];
+                $ConfigMotos = $ConfigMotos->Where("config_motos.nome_dono",  "like", "%" . $AplicaFiltro . "%");
+            }
             if (isset($data["ConfigMotos"]["marca"])) {
                 $AplicaFiltro = $data["ConfigMotos"]["marca"];
                 $ConfigMotos = $ConfigMotos->Where("config_motos.marca",  "like", "%" . $AplicaFiltro . "%");
@@ -83,13 +92,21 @@ class ConfigMotos extends Controller
                 $AplicaFiltro = $data["ConfigMotos"]["cor"];
                 $ConfigMotos = $ConfigMotos->Where("config_motos.cor",  "like", "%" . $AplicaFiltro . "%");
             }
-            if (isset($data["ConfigMotos"]["nome_dono"])) {
-                $AplicaFiltro = $data["ConfigMotos"]["nome_dono"];
-                $ConfigMotos = $ConfigMotos->Where("config_motos.nome_dono",  "like", "%" . $AplicaFiltro . "%");
+            if (isset($data["ConfigMotos"]["observacao"])) {
+                $AplicaFiltro = $data["ConfigMotos"]["observacao"];
+                $ConfigMotos = $ConfigMotos->Where("config_motos.observacao",  "like", "%" . $AplicaFiltro . "%");
             }
-            if (isset($data["ConfigMotos"]["observacoes"])) {
-                $AplicaFiltro = $data["ConfigMotos"]["observacoes"];
-                $ConfigMotos = $ConfigMotos->Where("config_motos.observacoes",  "like", "%" . $AplicaFiltro . "%");
+            if (isset($data["ConfigMotos"]["ano_fabricacao"])) {
+                $AplicaFiltro = $data["ConfigMotos"]["ano_fabricacao"];
+                $ConfigMotos = $ConfigMotos->Where("config_motos.ano_fabricacao",  "like", "%" . $AplicaFiltro . "%");
+            }
+            if (isset($data["ConfigMotos"]["quilometragem"])) {
+                $AplicaFiltro = $data["ConfigMotos"]["quilometragem"];
+                $ConfigMotos = $ConfigMotos->Where("config_motos.quilometragem",  "like", "%" . $AplicaFiltro . "%");
+            }
+            if (isset($data["ConfigMotos"]["garantia"])) {
+                $AplicaFiltro = $data["ConfigMotos"]["garantia"];
+                $ConfigMotos = $ConfigMotos->Where("config_motos.garantia",  "like", "%" . $AplicaFiltro . "%");
             }
             if (isset($data["ConfigMotos"]["status"])) {
                 $AplicaFiltro = $data["ConfigMotos"]["status"];
@@ -117,7 +134,6 @@ class ConfigMotos extends Controller
 
                 "Filtros" => $data["ConfigMotos"],
                 "Registros" => $Registros,
-
             ]);
         } catch (Exception $e) {
 
@@ -133,6 +149,7 @@ class ConfigMotos extends Controller
             $Registra = $LogsErrors->RegistraErro($Pagina, $Modulo, $Erro, $Erro_Completo);
             abort(403, "Erro localizado e enviado ao LOG de Erros");
         }
+        
     }
 
     public function Registros()
@@ -233,7 +250,10 @@ class ConfigMotos extends Controller
             $save->marca = $request->marca;
             $save->cor = $request->cor;
             $save->nome_dono = $request->nome_dono;
-            $save->observacoes = $request->observacoes;
+            $save->observacao = $request->observacao;
+            $save->ano_fabricacao = $request->ano_fabricacao;
+            $save->quilometragem = $request->quilometragem;
+            $save->garantia = $request->garantia;
             $save->status = $request->status;
             $save->created_at = $request->created_at;
 
@@ -341,11 +361,13 @@ class ConfigMotos extends Controller
 
             //MODELO DE INSERT PARA VOCE FAZER COM TODAS AS COLUNAS DO BANCO DE DADOS, MENOS ID, DELETED E UPDATED_AT
             $save->nome = $request->nome;
-            $save->nome = $request->nome;
             $save->marca = $request->marca;
             $save->cor = $request->cor;
             $save->nome_dono = $request->nome_dono;
-            $save->observacoes = $request->observacoes;
+            $save->observacao = $request->observacao;
+            $save->ano_fabricacao = $request->ano_fabricacao;
+            $save->quilometragem = $request->quilometragem;
+            $save->garantia = $request->garantia;
             $save->status = $request->status;
             $save->created_at = $request->created_at;
 
@@ -582,9 +604,21 @@ class ConfigMotos extends Controller
             $AplicaFiltro = $data["ConfigMotos"]["nome_dono"];
             $ConfigMotos = $ConfigMotos->Where("config_motos.nome_dono",  "like", "%" . $AplicaFiltro . "%");
         }
-        if (isset($data["ConfigMotos"]["observacoes"])) {
-            $AplicaFiltro = $data["ConfigMotos"]["observacoes"];
-            $ConfigMotos = $ConfigMotos->Where("config_motos.observacoes",  "like", "%" . $AplicaFiltro . "%");
+        if (isset($data["ConfigMotos"]["observacao"])) {
+            $AplicaFiltro = $data["ConfigMotos"]["observacao"];
+            $ConfigMotos = $ConfigMotos->Where("config_motos.observacao",  "like", "%" . $AplicaFiltro . "%");
+        }
+        if (isset($data["ConfigMotos"]["ano_fabricacao"])) {
+            $AplicaFiltro = $data["ConfigMotos"]["ano_fabricacao"];
+            $ConfigMotos = $ConfigMotos->Where("config_motos.ano_fabricacao",  "like", "%" . $AplicaFiltro . "%");
+        }
+        if (isset($data["ConfigMotos"]["quilometragem"])) {
+            $AplicaFiltro = $data["ConfigMotos"]["quilometragem"];
+            $ConfigMotos = $ConfigMotos->Where("config_motos.quilometragem",  "like", "%" . $AplicaFiltro . "%");
+        }
+        if (isset($data["ConfigMotos"]["garantia"])) {
+            $AplicaFiltro = $data["ConfigMotos"]["garantia"];
+            $ConfigMotos = $ConfigMotos->Where("config_motos.garantia",  "like", "%" . $AplicaFiltro . "%");
         }
         if (isset($data["ConfigMotos"]["status"])) {
             $AplicaFiltro = $data["ConfigMotos"]["status"];
@@ -609,6 +643,13 @@ class ConfigMotos extends Controller
             $Dadosconfig_motos[] = [
                 //MODELO DE CA,MPO PARA VOCE COLOCAR AQUI, PARA CADA COLUNA DO BANCO DE DADOS DEVERÁ TER UM, EXCLUIR O ID, DELETED E UPDATED_AT
                 'nome' => $config_motoss->nome,
+                'nome_dono' => $config_motoss->nome_dono,
+                'modelo' => $config_motoss->modelo,
+                'marca' => $config_motoss->marca,
+                'cor' => $config_motoss->cor,
+                'anexo' => $config_motoss->anexo,
+                'valor_compra' => $config_motoss->valor_compra,
+                'observacao' => $config_motoss->observacao,
 
             ];
         }
@@ -632,7 +673,7 @@ class ConfigMotos extends Controller
             // Arquivo foi deletado com sucesso
         }
 
-        $cabecalhoAba1 = array('nome', 'placa', 'modelo', 'ano', 'cor', 'valor_compra', 'observacao', 'status', 'Data de Cadastro');
+        $cabecalhoAba1 = array('nome', 'nome_dono', 'placa', 'modelo', 'ano', 'cor', 'valor_compra', 'observacao', 'status', 'Data de Cadastro');
 
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();

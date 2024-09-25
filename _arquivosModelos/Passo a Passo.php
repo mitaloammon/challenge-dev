@@ -30,6 +30,7 @@ Terceiro Passo:
     INSERT INTO `permissions` (`name`, `guard_name`, `ordem`, `created_at`, `updated_at`) VALUES ('duplicate.@@TROCARAQUI@@@', 'web', 125, NULL, NULL);
     INSERT INTO `permissions` (`name`, `guard_name`, `ordem`, `created_at`, `updated_at`) VALUES ('delete.@@TROCARAQUI@@@', 'web', 125, NULL, NULL);
 
+
 Quarto Passo: Colar esse codigo no Permission.vue logo apos o Modifica aqui, trocar o @@TROCARAQUI@@@ pelo nome correto e os numeros com os IDs que foi gerado apos seu insert acima.
             Onde A ate E serão os IDs da sequencia acima
             ORDEM  sera a ordem definida no quinto passo

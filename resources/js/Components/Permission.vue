@@ -106,6 +106,36 @@
                     </td>
                 </tr>
 
+                <tr>
+                  <td class='p-2 whitespace-nowrap'>
+                    <div class='flex items-center'>
+                    <div class='font-medium text-gray-800'>Motos</div>
+                    </div>
+                  </td>
+                  <td class='p-2 text-center'>
+                    <Checkbox @click='markLine(range(349, 353), 7)' v-model='lineChecked' class='ml-auto' :value='7' />
+                  </td>
+                  <td class='p-2 whitespace-nowrap text-center'>
+                  <Checkbox v-model='checked' :value='349' />
+                  </td>
+                  <td class='p-2 whitespace-nowrap text-center'>
+                  <Checkbox v-model='checked' :value='350' />
+
+                  </td>
+                  <td class='p-2 whitespace-nowrap text-center'>
+                  <Checkbox v-model='checked' :value='351' />
+
+                  </td>
+                  <td class='p-2 whitespace-nowrap text-center'>
+                  <Checkbox v-model='checked' :value='352' />
+
+                  </td>
+                  <td class='p-2 whitespace-nowrap text-center'>
+                  <Checkbox v-model='checked' :value='353' />
+
+                  </td>
+                </tr>
+
 
 
 <!-- #ModificaAqui -->

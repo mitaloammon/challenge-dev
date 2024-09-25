@@ -13,6 +13,9 @@ use App\Http\Controllers\SMTP;
 
 use App\Http\Controllers\ConfigCarros;
 use App\Http\Controllers\ConfigMotos;
+use App\Http\Controllers\AgendamentosController;
+use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\HistoricosController;
 
 // ALTERAHEAD
 
@@ -146,7 +149,7 @@ Route::middleware(['auth', 'has.temp.password'])->group(function () {
     Route::post('SMTP/editar/{id}', [SMTP::class, 'update'])->name('update.SMTP');
 
 
-
+    /* Routes Carros */
     Route::get('ConfigCarros', [ConfigCarros::class, 'index'])->name('list.ConfigCarros');
     Route::post('ConfigCarros', [ConfigCarros::class, 'index'])->name('listP.ConfigCarros');
     Route::get('ConfigCarros/criar', [ConfigCarros::class, 'create'])->name('form.store.ConfigCarros');
@@ -159,7 +162,7 @@ Route::middleware(['auth', 'has.temp.password'])->group(function () {
     Route::post('ConfigCarros/RestaurarTodos', [ConfigCarros::class, 'RestaurarTodos'])->name('RestaurarTodos.ConfigCarros');
     Route::get('ConfigCarros/RelatorioExcel', [ConfigCarros::class, 'exportarRelatorioExcel'])->name('get.Excel.ConfigCarros');
 
-
+    /* Routes Motos */
     Route::get('ConfigMotos', [ConfigMotos::class, 'index'])->name('list.ConfigMotos');
     Route::post('ConfigMotos', [ConfigMotos::class, 'index'])->name('listP.ConfigMotos');
     Route::get('ConfigMotos/criar', [ConfigMotos::class, 'create'])->name('form.store.ConfigMotos');
@@ -172,7 +175,45 @@ Route::middleware(['auth', 'has.temp.password'])->group(function () {
     Route::post('ConfigMotos/RestaurarTodos', [ConfigMotos::class, 'RestaurarTodos'])->name('RestaurarTodos.ConfigMotos');
     Route::get('ConfigMotos/RelatorioExcel', [ConfigMotos::class, 'exportarRelatorioExcel'])->name('get.Excel.ConfigMotos');
 
-
+    /* Routes Agendamentos */
+    Route::get('AgendamentosController', [AgendamentosController::class, 'index'])->name('list.AgendamentosController');
+    Route::post('AgendamentosController', [AgendamentosController::class, 'index'])->name('listP.AgendamentosController');
+    Route::get('AgendamentosController/criar', [AgendamentosController::class, 'create'])->name('form.store.AgendamentosController');
+    Route::post('AgendamentosController/criar', [AgendamentosController::class, 'store'])->name('store.AgendamentosController');
+    Route::get('AgendamentosController/editar/{id}', [AgendamentosController::class, 'edit'])->name('form.update.AgendamentosController');
+    Route::post('AgendamentosController/editar/{id}', [AgendamentosController::class, 'update'])->name('update.AgendamentosController');
+    Route::post('AgendamentosController/deletar/{id}', [AgendamentosController::class, 'delete'])->name('delete.AgendamentosController');
+    Route::post('AgendamentosController/deletarSelecionados/{id?}', [AgendamentosController::class, 'deleteSelected'])->name('deleteSelected.AgendamentosController');
+    Route::post('AgendamentosController/deletarTodos', [AgendamentosController::class, 'deletarTodos'])->name('deletarTodos.AgendamentosController');
+    Route::post('AgendamentosController/RestaurarTodos', [AgendamentosController::class, 'RestaurarTodos'])->name('RestaurarTodos.AgendamentosController');
+    Route::get('AgendamentosController/RelatorioExcel', [AgendamentosController::class, 'exportarRelatorioExcel'])->name('get.Excel.AgendamentosController');
+    
+    /* Routes Historicos */
+    Route::get('HistoricosController', [HistoricosController::class, 'index'])->name('list.HistoricosController');
+    Route::post('HistoricosController', [HistoricosController::class, 'index'])->name('listP.HistoricosController');
+    Route::get('HistoricosController/criar', [HistoricosController::class, 'create'])->name('form.store.HistoricosController');
+    Route::post('HistoricosController/criar', [HistoricosController::class, 'store'])->name('store.HistoricosController');
+    Route::get('HistoricosController/editar/{id}', [HistoricosController::class, 'edit'])->name('form.update.HistoricosController');
+    Route::post('HistoricosController/editar/{id}', [HistoricosController::class, 'update'])->name('update.HistoricosController');
+    Route::post('HistoricosController/deletar/{id}', [HistoricosController::class, 'delete'])->name('delete.HistoricosController');
+    Route::post('HistoricosController/deletarSelecionados/{id?}', [HistoricosController::class, 'deleteSelected'])->name('deleteSelected.HistoricosController');
+    Route::post('HistoricosController/deletarTodos', [HistoricosController::class, 'deletarTodos'])->name('deletarTodos.HistoricosController');
+    Route::post('HistoricosController/RestaurarTodos', [HistoricosController::class, 'RestaurarTodos'])->name('RestaurarTodos.HistoricosController');
+    Route::get('HistoricosController/RelatorioExcel', [HistoricosController::class, 'exportarRelatorioExcel'])->name('get.Excel.HistoricosController');
+    
+    /* Routes Clientes */
+    Route::get('ClientesController', [ClientesController::class, 'index'])->name('list.ClientesController');
+    Route::post('ClientesController', [ClientesController::class, 'index'])->name('listP.ClientesController');
+    Route::get('ClientesController/criar', [ClientesController::class, 'create'])->name('form.store.ClientesController');
+    Route::post('ClientesController/criar', [ClientesController::class, 'store'])->name('store.ClientesController');
+    Route::get('ClientesController/editar/{id}', [ClientesController::class, 'edit'])->name('form.update.ClientesController');
+    Route::post('ClientesController/editar/{id}', [ClientesController::class, 'update'])->name('update.ClientesController');
+    Route::post('ClientesController/deletar/{id}', [ClientesController::class, 'delete'])->name('delete.ClientesController');
+    Route::post('ClientesController/deletarSelecionados/{id?}', [ClientesController::class, 'deleteSelected'])->name('deleteSelected.ClientesController');
+    Route::post('ClientesController/deletarTodos', [ClientesController::class, 'deletarTodos'])->name('deletarTodos.ClientesController');
+    Route::post('ClientesController/RestaurarTodos', [ClientesController::class, 'RestaurarTodos'])->name('RestaurarTodos.ClientesController');
+    Route::get('ClientesController/RelatorioExcel', [ClientesController::class, 'exportarRelatorioExcel'])->name('get.Excel.ClientesController');
+    
     // #ModificaAqui
 
 

@@ -1,5 +1,5 @@
 <template>
-  <PageTitle title="Carros" />
+  <PageTitle title="Motos" />
   <Nav class="mt-4 text-sm text-gray-400 list-none bg-white p-3 px-10 rounded-sm flex space-x-10 shadow-sm">
     <button class="font-bold" :class="{ 'text-primary': currentNav == 1 }" @click="currentNav = 1">
       Informações Gerais
@@ -46,7 +46,14 @@
 
         <div>
           <span class="p-float-label">
-            <Textarea v-model="form.observacoes" id="observacoes" type="text" class="w-full" required :autoResize="true" row="1" cols="60"/>
+            <InputText v-model="form.valor_compra" id="valor_compra" type="text" class="w-full" required maxlength="50" />
+            <label for="nome" class="text-sm">Valor da Compra</label>
+          </span>
+        </div>
+
+        <div>
+          <span class="p-float-label">
+            <Textarea v-model="form.observacao" id="observacao" type="text" class="w-full" required :autoResize="true" row="1" cols="60"/>
             <label for="nome" class="text-sm">Observações</label>
           </span>
         </div>
@@ -128,7 +135,9 @@ cor: "",
 
 nome_dono: "",
 
-observacoes: "",
+valor_compra: "",
+
+observacao: "",
 
 status: "",
 

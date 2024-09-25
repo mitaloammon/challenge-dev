@@ -46,8 +46,8 @@
 
         <div>
           <span class="p-float-label">
-            <Textarea v-model="form.observacoes" id="observacoes" type="text" class="w-full" required :autoResize="true" row="1" cols="60"/>
-            <label for="nome" class="text-sm">Observações</label>
+            <Textarea v-model="form.observacao" id="observacao" type="text" class="w-full" required :autoResize="true" row="1" cols="60"/>
+            <label for="nome" class="text-sm">Observação</label>
           </span>
         </div>
 
@@ -129,7 +129,9 @@ cor: $propsPage?.value.ConfigMotos?.cor,
 
 nome_dono: $propsPage?.value.ConfigMotos?.nome_dono,
 
-observacoes: $propsPage?.value.ConfigMotos?.observacoes,
+observacao: $propsPage?.value.ConfigMotos?.observacao,
+
+valor_compra: $propsPage?.value.ConfigMotos?.valor_compra,
 
 status: { value: $propsPage?.value.ConfigMotos?.status},
 

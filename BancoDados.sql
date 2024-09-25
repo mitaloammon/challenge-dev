@@ -13498,6 +13498,74 @@ INSERT IGNORE INTO `util_paises` (`id`, `nome`, `nome_usa`) VALUES
 	(252, 'ZIMBABUÉ', 'ZIMBABWE');
 /*!40000 ALTER TABLE `util_paises` ENABLE KEYS */;
 
+
+-- CREATION OF TABLES FOR NEW FUNCIONALITIES IN THE SYSTEM 
+
+CREATE TABLE `historicos` (
+	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`historico_carro_id` INT(10) NULL DEFAULT '0',
+	`historico_moto_id` INT(10) NULL DEFAULT '0',
+	`data` DATE NOT NULL,
+	`observacoes` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`status` ENUM('Em manutenção','Aguardando peças','Concluído') NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`token` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`deleted` INT(10) NULL DEFAULT '0',
+	`created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+	`updated_at` DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`) USING BTREE,
+	INDEX `fk_historico_carro` (`historico_carro_id`) USING BTREE,
+	INDEX `fk_historico_moto` (`historico_moto_id`) USING BTREE,
+	CONSTRAINT `fk_historico_carro` FOREIGN KEY (`historico_carro_id`) REFERENCES `config_carros` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION,
+	CONSTRAINT `fk_historico_moto` FOREIGN KEY (`historico_moto_id`) REFERENCES `config_motos` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION
+) COLLATE='utf8mb4_unicode_ci' ENGINE=InnoDB AUTO_INCREMENT=23;
+
+
+CREATE TABLE `agendamentos` (
+	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`data_agendamento` DATE NOT NULL,
+	`hora_agendamento` DATETIME NOT NULL,
+	`status` VARCHAR(255) NULL DEFAULT '1' COLLATE 'utf8mb4_unicode_ci',
+	`agendamento_carro_id` INT(10) NULL DEFAULT '0',
+	`agendamento_moto_id` INT(10) NULL DEFAULT '0',
+	`token` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`deleted` INT(10) NULL DEFAULT '0',
+	`created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+	`updated_at` DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`) USING BTREE,
+	INDEX `fk_agendamento_carro` (`agendamento_carro_id`) USING BTREE,
+	INDEX `fk_agendamento_moto` (`agendamento_moto_id`) USING BTREE,
+	CONSTRAINT `fk_agendamento_carro` FOREIGN KEY (`agendamento_carro_id`) REFERENCES `config_carros` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION,
+	CONSTRAINT `fk_agendamento_moto` FOREIGN KEY (`agendamento_moto_id`) REFERENCES `config_motos` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION
+) COLLATE='utf8mb4_unicode_ci' ENGINE=InnoDB AUTO_INCREMENT=23;
+
+
+CREATE TABLE `servicos` (
+	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`descricao` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`preco` DECIMAL(10,2) NOT NULL,
+	`tempo_estimado` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`token` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`deleted` INT(10) NULL DEFAULT '0',
+	`created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+	`updated_at` DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`) USING BTREE
+) COLLATE='utf8mb4_unicode_ci' ENGINE=InnoDB AUTO_INCREMENT=23;
+
+
+CREATE TABLE `clientes` (
+	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`nome` VARCHAR(500) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`telefone` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`email` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`endereco` VARCHAR(500) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`status` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`token` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
+	`deleted` INT(10) NULL DEFAULT '0',
+	`created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+	`updated_at` DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`) USING BTREE
+) COLLATE='utf8mb4_unicode_ci' ENGINE=InnoDB AUTO_INCREMENT=23;
+
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

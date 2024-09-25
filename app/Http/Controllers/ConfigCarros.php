@@ -8,6 +8,7 @@
 	use Illuminate\Support\Facades\Session;
 	use App\Models\Office;
 	use Illuminate\Http\Request;
+	use Illuminate\Http\Requests\StoreConfigCarrosPost;
 	use Illuminate\Support\Arr;
 	use Inertia\Inertia;
 	use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -29,9 +30,8 @@
 
 			try{
 
-
-
 			$data = Session::all();
+			//dd($data);
 
 			if(!isset($data["ConfigCarros"]) || empty($data["ConfigCarros"])){
 				session(["ConfigCarros" => array("status"=>"0", "orderBy"=>array("column"=>"created_at","sorting"=>"1"),"limit"=>"10")]);
@@ -40,7 +40,7 @@
 
 			$Filtros = new Security;
 			if($request->input()){
-			$Limpar = false;
+				$Limpar = false;
 			if($request->input("limparFiltros") == true){
 				$Limpar = true;
 			}
@@ -58,9 +58,7 @@
 				?->columns;
 
 			$ConfigCarros = DB::table("config_carros")
-
-			->select(DB::raw("config_carros.*, DATE_FORMAT(config_carros.created_at, '%d/%m/%Y - %H:%i:%s') as data_final
-
+				->select(DB::raw("config_carros.*, DATE_FORMAT(config_carros.created_at, '%d/%m/%Y - %H:%i:%s') as data_final
 			"));
 
 			if(isset($data["ConfigCarros"]["orderBy"])){
@@ -69,7 +67,6 @@
 			} else {
 				$ConfigCarros =  $ConfigCarros->orderBy("config_carros.created_at", "desc");
 			}
-
 
 
             if(isset($data["ConfigCarros"]["nome"])){
@@ -99,6 +96,18 @@
             if(isset($data["ConfigCarros"]["observacao"])){
                 $AplicaFiltro = $data["ConfigCarros"]["observacao"];
                 $ConfigCarros = $ConfigCarros->Where("config_carros.observacao",  "like", "%" . $AplicaFiltro . "%");
+            }
+            if(isset($data["ConfigCarros"]["ano_fabricacao"])){
+                $AplicaFiltro = $data["ConfigCarros"]["ano_fabricacao"];
+                $ConfigCarros = $ConfigCarros->Where("config_carros.ano_fabricacao",  "like", "%" . $AplicaFiltro . "%");
+            }
+            if(isset($data["ConfigCarros"]["quilometragem"])){
+                $AplicaFiltro = $data["ConfigCarros"]["quilometragem"];
+                $ConfigCarros = $ConfigCarros->Where("config_carros.quilometragem",  "like", "%" . $AplicaFiltro . "%");
+            }
+            if(isset($data["ConfigCarros"]["garantia"])){
+                $AplicaFiltro = $data["ConfigCarros"]["garantia"];
+                $ConfigCarros = $ConfigCarros->Where("config_carros.garantia",  "like", "%" . $AplicaFiltro . "%");
             }
             if(isset($data["ConfigCarros"]["status"])){
                 $AplicaFiltro = $data["ConfigCarros"]["status"];
@@ -252,6 +261,9 @@
             $save->cor = $request->cor;
             $save->valor_compra = $request->valor_compra;
             $save->observacao = $request->observacao;
+            $save->ano_fabricacao = $request->ano_fabricacao;
+            $save->quilometragem = $request->quilometragem;
+            $save->garantia = $request->garantia;
             $save->status = $request->status;
             $save->token = md5(date("Y-m-d H:i:s").rand(0,999999999));
 
@@ -363,6 +375,9 @@
                 $save->cor = $request->cor;
                 $save->valor_compra = $request->valor_compra;
                 $save->observacao = $request->observacao;
+                $save->ano_fabricacao = $request->ano_fabricacao;
+                $save->quilometragem = $request->quilometragem;
+                $save->garantia = $request->garantia;
                 $save->status = $request->status;
                 $save->token = md5(date("Y-m-d H:i:s").rand(0,999999999));
 
@@ -621,6 +636,18 @@
                 $AplicaFiltro = $data["ConfigCarros"]["observacao"];
                 $ConfigCarros = $ConfigCarros->Where("config_carros.observacao",  "like", "%" . $AplicaFiltro . "%");
             }
+            if(isset($data["ConfigCarros"]["ano_fabricacao"])){
+                $AplicaFiltro = $data["ConfigCarros"]["ano_fabricacao"];
+                $ConfigCarros = $ConfigCarros->Where("config_carros.ano_fabricacao",  "like", "%" . $AplicaFiltro . "%");
+            }
+            if(isset($data["ConfigCarros"]["quilometragem"])){
+                $AplicaFiltro = $data["ConfigCarros"]["quilometragem"];
+                $ConfigCarros = $ConfigCarros->Where("config_carros.quilometragem",  "like", "%" . $AplicaFiltro . "%");
+            }
+            if(isset($data["ConfigCarros"]["garantia"])){
+                $AplicaFiltro = $data["ConfigCarros"]["garantia"];
+                $ConfigCarros = $ConfigCarros->Where("config_carros.garantia",  "like", "%" . $AplicaFiltro . "%");
+            }
             if(isset($data["ConfigCarros"]["status"])){
                 $AplicaFiltro = $data["ConfigCarros"]["status"];
                 $ConfigCarros = $ConfigCarros->Where("config_carros.status",  "like", "%" . $AplicaFiltro . "%");
@@ -649,6 +676,9 @@
                     'cor' => $config_carross->cor,
                     'valor_compra' => $config_carross->valor_compra,
                     'observacao' => $config_carross->observacao,
+                    'ano_fabricacao' => $config_carross->ano_fabricacao,
+                    'quilometragem' => $config_carross->quilometragem,
+                    'garantia' => $config_carross->garantia,
                     'status' => $config_carross->status,
                     'data_final' => $config_carross->data_final
 				];
@@ -672,7 +702,7 @@
 				// Arquivo foi deletado com sucesso
 			}
 
-			$cabecalhoAba1 = array('nome','placa','modelo','ano','cor','valor_compra','observacao','status','Data de Cadastro');
+			$cabecalhoAba1 = array('nome','placa','modelo','ano','cor','valor_compra','observacao','ano_fabricacao', 'quilometragem', 'garantia','status','Data de Cadastro');
 
 			$spreadsheet = new Spreadsheet();
 			$sheet = $spreadsheet->getActiveSheet();
