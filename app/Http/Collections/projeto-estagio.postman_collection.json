@@ -1,0 +1,175 @@
+{
+	"info": {
+		"_postman_id": "836f268c-eb49-42da-9b4a-632f13aa6832",
+		"name": "projeto-estagio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27355677"
+	},
+	"item": [
+		{
+			"name": "motos",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"created_at\": \"2023-10-10 23:10:12\",\r\n    \"nome\" : \"carro\",\r\n    \"nome_dono\" : \"alessandro\",\r\n    \"marca\" : \"fox\",\r\n    \"cor\" : \"azul\",\r\n    \"observacao\" : \"carro\",\r\n    \"ano_fabricacao\" : \"2022\",\r\n    \"quilometragem\" : \"180\",\r\n    \"garantia\" : \"sem garantia\",\r\n    \"status\" : \"disponível\",\r\n    \"deleted\" : \"0\",\r\n    \"updated\": \"NULL\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/ConfigMotos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"ConfigMotos"
+					],
+					"query": [
+						{
+							"key": "marca",
+							"value": "Fiat",
+							"disabled": true
+						},
+						{
+							"key": "modelo",
+							"value": "Uno",
+							"disabled": true
+						},
+						{
+							"key": "nome",
+							"value": "Uno 1.0",
+							"disabled": true
+						},
+						{
+							"key": "cor",
+							"value": "Azul",
+							"disabled": true
+						},
+						{
+							"key": "status",
+							"value": "Disponivel",
+							"disabled": true
+						},
+						{
+							"key": "token",
+							"value": "ashjahsodhjskankjs",
+							"disabled": true
+						},
+						{
+							"key": "anexo",
+							"value": "dsadsde3r4rerew",
+							"disabled": true
+						},
+						{
+							"key": "observacao",
+							"value": "qualquer observacao",
+							"disabled": true
+						},
+						{
+							"key": "deleted",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "ano_fabricacao",
+							"value": "2023",
+							"disabled": true
+						},
+						{
+							"key": "quilometragem",
+							"value": "180",
+							"disabled": true
+						},
+						{
+							"key": "garantia",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "created_at",
+							"value": "null",
+							"disabled": true
+						},
+						{
+							"key": "updated_at",
+							"value": "null",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "motos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8000/web/ConfigMotos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"web",
+						"ConfigMotos"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

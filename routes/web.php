@@ -238,7 +238,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-
 Route::get('/login', [Login::class, 'index'])->name('login');
 
 Route::post('/login', [Login::class, 'login'])->name('action.login');
