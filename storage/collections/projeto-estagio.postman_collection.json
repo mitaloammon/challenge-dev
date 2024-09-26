@@ -1,0 +1,387 @@
+{
+	"info": {
+		"_postman_id": "836f268c-eb49-42da-9b4a-632f13aa6832",
+		"name": "projeto-estagio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27355677"
+	},
+	"item": [
+		{
+			"name": "motos",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"created_at\": \"2023-10-10 23:10:12\",\r\n    \"nome\" : \"motocicleta\",\r\n    \"nome_dono\" : \"alessandro\",\r\n    \"marca\" : \"honda\",\r\n    \"cor\" : \"azul\",\r\n    \"observacao\" : \"moto\",\r\n    \"ano_fabricacao\" : \"2022\",\r\n    \"quilometragem\" : \"180\",\r\n    \"garantia\" : \"sem garantia\",\r\n    \"status\" : \"disponível\",\r\n    \"deleted\" : \"0\",\r\n    \"updated\": \"NULL\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/ConfigMotos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"ConfigMotos"
+					],
+					"query": [
+						{
+							"key": "marca",
+							"value": "Fiat",
+							"disabled": true
+						},
+						{
+							"key": "modelo",
+							"value": "Uno",
+							"disabled": true
+						},
+						{
+							"key": "nome",
+							"value": "Uno 1.0",
+							"disabled": true
+						},
+						{
+							"key": "cor",
+							"value": "Azul",
+							"disabled": true
+						},
+						{
+							"key": "status",
+							"value": "Disponivel",
+							"disabled": true
+						},
+						{
+							"key": "token",
+							"value": "ashjahsodhjskankjs",
+							"disabled": true
+						},
+						{
+							"key": "anexo",
+							"value": "dsadsde3r4rerew",
+							"disabled": true
+						},
+						{
+							"key": "observacao",
+							"value": "qualquer observacao",
+							"disabled": true
+						},
+						{
+							"key": "deleted",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "ano_fabricacao",
+							"value": "2023",
+							"disabled": true
+						},
+						{
+							"key": "quilometragem",
+							"value": "180",
+							"disabled": true
+						},
+						{
+							"key": "garantia",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "created_at",
+							"value": "null",
+							"disabled": true
+						},
+						{
+							"key": "updated_at",
+							"value": "null",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "motos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8000/web/ConfigMotos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"web",
+						"ConfigMotos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "clientes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\" : \"alessandro\",\r\n    \"telefone\" : \"7199563254\",\r\n    \"email\" : \"alessandro@alessandro.com\",\r\n    \"token\" : \"ashajh8721nka88\",\r\n    \"created_at\": \"2023-10-10 23:10:12\",\r\n    \"deleted\" : \"0\",\r\n    \"updated\": \"NULL\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/ClientesController",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"ClientesController"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "clientes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/ClientesController",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"ClientesController"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "carros",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"created_at\": \"2023-10-10 23:10:12\",\r\n    \"nome\" : \"carro\",\r\n    \"placa\" : \"AGF456\",\r\n    \"modelo\" : \"fox\",\r\n    \"ano\" : \"2020\",\r\n    \"cor\" : \"azul\",\r\n    \"valor_compra\": \"27.000\",\r\n    \"observacao\" : \"carro\",\r\n    \"token\" : \"sasha899asb\",\r\n    \"status\" : \"disponível\",\r\n    \"deleted\" : \"0\",\r\n    \"updated\": \"NULL\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/ConfigCarros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"ConfigCarros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "carros",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/ConfigCarros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"ConfigCarros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "historicos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"created_at\": \"2023-10-10 23:10:12\",\r\n    \"observacoes\" : \"historico veiculo\",\r\n    \"data\" : \"2022-02-02\",\r\n    \"historico_carro_id\" : \"1\",\r\n    \"historico_moto_id\" : \"1\",\r\n    \"token\" : \"sasha809asb\",\r\n    \"status\" : \"disponível\",\r\n    \"deleted\" : \"0\",\r\n    \"updated\": \"NULL\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/HistoricosController",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"HistoricosController"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "historicos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/HistoricosController",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"HistoricosController"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "agendamentos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"created_at\": \"2023-10-10 23:10:12\",\r\n    \"data_agendamento\" : \"2022-02-02\",\r\n    \"hora_agendamento\" : \"2023-10-10 23:10:12\",\r\n    \"agendamento_carro_id\" : \"1\",\r\n    \"agendamento_moto_id\" : \"1\",\r\n    \"token\" : \"sasha809asb\",\r\n    \"status\" : \"disponível\",\r\n    \"deleted\" : \"0\",\r\n    \"updated\": \"NULL\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/AgendamentosController",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"AgendamentosController"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "agendamentos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/AgendamentosController",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"AgendamentosController"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

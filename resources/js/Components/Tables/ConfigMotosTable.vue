@@ -106,6 +106,7 @@
 					</div>
 
 				
+					
 					<div>
 						<span class="p-float-label">
 							<InputText v-model="form2.nome" id="nome" type="text" class="w-full" required />
@@ -117,6 +118,13 @@
 						<span class="p-float-label">
 							<InputText v-model="form2.modelo" id="modelo" type="text" class="w-full" required />
 							<label for="modelo" class="text-sm">Modelo</label>
+						</span>
+					</div>
+
+					<div>
+						<span class="p-float-label">
+							<InputText v-model="form2.nome_dono" id="nome_dono" type="text" class="w-full" required />
+							<label for="nome_dono" class="text-sm">Nome do Dono</label>
 						</span>
 					</div>
 
@@ -143,8 +151,22 @@
 
 					<div>
 						<span class="p-float-label">
-							<InputText v-model="form2.valor_compra" id="valor_compra" type="text" class="w-full" required />
-							<label for="valor_compra" class="text-sm">Valor da Compra</label>
+							<InputText v-model="form2.ano_fabricacao" id="ano_fabricacao" type="text" class="w-full" required />
+							<label for="ano_fabricacao" class="text-sm">Ano de Fabricação</label>
+						</span>
+					</div>
+
+					<div>
+						<span class="p-float-label">
+							<InputText v-model="form2.quilometragem" id="quilometragem" type="text" class="w-full" required />
+							<label for="quilometragem" class="text-sm">Quilometragem</label>
+						</span>
+					</div>
+
+					<div>
+						<span class="p-float-label">
+							<InputText v-model="form2.garantia" id="garantia" type="text" class="w-full" required />
+							<label for="garantia" class="text-sm">Garantia</label>
 						</span>
 					</div>
 
@@ -154,8 +176,6 @@
 							<label for="observacao" class="text-sm">Observação</label>
 						</span>
 					</div>
-
-					
 
 
 					<div>
@@ -217,6 +237,11 @@
 					</div>
 
 					<div class="flex items-center space-x-2">
+						<Checkbox @change="toggleColumns" :binary="true" v-model="formColumns['columns']['nome_dono']" />
+						<span>Nome do Dono</span>
+					</div>
+
+					<div class="flex items-center space-x-2">
 						<Checkbox @change="toggleColumns" :binary="true" v-model="formColumns['columns']['marca']" />
 						<span>Marca</span>
 					</div>
@@ -232,14 +257,25 @@
 					</div>
 
 					<div class="flex items-center space-x-2">
-						<Checkbox @change="toggleColumns" :binary="true" v-model="formColumns['columns']['valor_compra']" />
-						<span>Valor da Compra</span>
+						<Checkbox @change="toggleColumns" :binary="true" v-model="formColumns['columns']['ano_fabricacao']" />
+						<span>Ano de Fabricação</span>
+					</div>
+
+					<div class="flex items-center space-x-2">
+						<Checkbox @change="toggleColumns" :binary="true" v-model="formColumns['columns']['quilometragem']" />
+						<span>Quilometragem</span>
+					</div>
+
+					<div class="flex items-center space-x-2">
+						<Checkbox @change="toggleColumns" :binary="true" v-model="formColumns['columns']['garantia']" />
+						<span>Garantia</span>
 					</div>
 
 					<div class="flex items-center space-x-2">
 						<Checkbox @change="toggleColumns" :binary="true" v-model="formColumns['columns']['observacao']" />
 						<span>Observação</span>
 					</div>
+					
 
 					<div class="flex items-center space-x-2">
 						<Checkbox @change="toggleColumns" :binary="true" v-model="formColumns['columns']['status']" />
@@ -259,7 +295,7 @@
 
 		<div class="mt-4 flex flex-col max-md:px-2 py-1 rounded-lg shadow-sm">
 			<div class="inline-block min-w-full py-2 align-middle">
-				<h2 class="text-xl font-semibold fontInter text-center py-5"><b>Carros</b></h2>
+				<h2 class="text-xl font-semibold fontInter text-center py-5"><b>Motos</b></h2>
 				<div class="overflow-hidden overflow-x-visible ring-1 ring-black ring-opacity-5 md:rounded-lg">
 					<table class="min-w-full divide-y divide-gray-300">
 						<thead class=" mb-24">
@@ -286,14 +322,135 @@
 										</svg>
 									</div>
 								</th>
-								
 
 
+								<th v-if="formColumns.columns.modelo" scope="col"
+									class="px-4 text-sm cursor-pointer text-center border-r group"
+									@click="orderBy = { column: 'modelo', sorting: sortTable(sortVal.modelo) ? sortVal.modelo = 1 : sortVal.modelo = 0 }">
+									<div class="flex">
+										<span class="group-hover:text-indigo-800">Modelo</span>
+										<svg xmlns="http://www.w3.org/2000/svg"
+											class="h-5 w-5 ml-auto group-hover:text-indigo-800" fill="none"
+											viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+											<path stroke-linecap="round" stroke-linejoin="round"
+												d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+										</svg>
+									</div>
+								</th>
 
+								<th v-if="formColumns.columns.nome_dono" scope="col"
+									class="px-4 text-sm cursor-pointer text-center border-r group"
+									@click="orderBy = { column: 'nome_dono', sorting: sortTable(sortVal.nome_dono) ? sortVal.nome_dono = 1 : sortVal.nome_dono = 0 }">
+									<div class="flex">
+										<span class="group-hover:text-indigo-800">Nome do Dono</span>
+										<svg xmlns="http://www.w3.org/2000/svg"
+											class="h-5 w-5 ml-auto group-hover:text-indigo-800" fill="none"
+											viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+											<path stroke-linecap="round" stroke-linejoin="round"
+												d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+										</svg>
+									</div>
+								</th>
 
+								<th v-if="formColumns.columns.marca" scope="col"
+									class="px-4 text-sm cursor-pointer text-center border-r group"
+									@click="orderBy = { column: 'marca', sorting: sortTable(sortVal.marca) ? sortVal.marca = 1 : sortVal.marca = 0 }">
+									<div class="flex">
+										<span class="group-hover:text-indigo-800">Marca</span>
+										<svg xmlns="http://www.w3.org/2000/svg"
+											class="h-5 w-5 ml-auto group-hover:text-indigo-800" fill="none"
+											viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+											<path stroke-linecap="round" stroke-linejoin="round"
+												d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+										</svg>
+									</div>
+								</th>
 
+								<th v-if="formColumns.columns.cor" scope="col"
+									class="px-4 text-sm cursor-pointer text-center border-r group"
+									@click="orderBy = { column: 'cor', sorting: sortTable(sortVal.cor) ? sortVal.cor = 1 : sortVal.cor = 0 }">
+									<div class="flex">
+										<span class="group-hover:text-indigo-800">Cor</span>
+										<svg xmlns="http://www.w3.org/2000/svg"
+											class="h-5 w-5 ml-auto group-hover:text-indigo-800" fill="none"
+											viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+											<path stroke-linecap="round" stroke-linejoin="round"
+												d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+										</svg>
+									</div>
+								</th>
 
+								<th v-if="formColumns.columns.anexo" scope="col"
+									class="px-4 text-sm cursor-pointer text-center border-r group"
+									@click="orderBy = { column: 'anexo', sorting: sortTable(sortVal.anexo) ? sortVal.anexo = 1 : sortVal.anexo = 0 }">
+									<div class="flex">
+										<span class="group-hover:text-indigo-800">Anexo</span>
+										<svg xmlns="http://www.w3.org/2000/svg"
+											class="h-5 w-5 ml-auto group-hover:text-indigo-800" fill="none"
+											viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+											<path stroke-linecap="round" stroke-linejoin="round"
+												d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+										</svg>
+									</div>
+								</th>
 
+								<th v-if="formColumns.columns.ano_fabricacao" scope="col"
+									class="px-4 text-sm cursor-pointer text-center border-r group"
+									@click="orderBy = { column: 'ano_fabricacao', sorting: sortTable(sortVal.ano_fabricacao) ? sortVal.ano_fabricacao = 1 : sortVal.ano_fabricacao = 0 }">
+									<div class="flex">
+										<span class="group-hover:text-indigo-800">Ano de Fabricação</span>
+										<svg xmlns="http://www.w3.org/2000/svg"
+											class="h-5 w-5 ml-auto group-hover:text-indigo-800" fill="none"
+											viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+											<path stroke-linecap="round" stroke-linejoin="round"
+												d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+										</svg>
+									</div>
+								</th>
+
+								<th v-if="formColumns.columns.quilometragem" scope="col"
+									class="px-4 text-sm cursor-pointer text-center border-r group"
+									@click="orderBy = { column: 'quilometragem', sorting: sortTable(sortVal.quilometragem) ? sortVal.quilometragem = 1 : sortVal.quilometragem = 0 }">
+									<div class="flex">
+										<span class="group-hover:text-indigo-800">Quilometragem</span>
+										<svg xmlns="http://www.w3.org/2000/svg"
+											class="h-5 w-5 ml-auto group-hover:text-indigo-800" fill="none"
+											viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+											<path stroke-linecap="round" stroke-linejoin="round"
+												d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+										</svg>
+									</div>
+								</th>
+
+								<th v-if="formColumns.columns.garantia" scope="col"
+									class="px-4 text-sm cursor-pointer text-center border-r group"
+									@click="orderBy = { column: 'garantia', sorting: sortTable(sortVal.garantia) ? sortVal.garantia = 1 : sortVal.garantia = 0 }">
+									<div class="flex">
+										<span class="group-hover:text-indigo-800">Garantia</span>
+										<svg xmlns="http://www.w3.org/2000/svg"
+											class="h-5 w-5 ml-auto group-hover:text-indigo-800" fill="none"
+											viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+											<path stroke-linecap="round" stroke-linejoin="round"
+												d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+										</svg>
+									</div>
+								</th>
+
+								<th v-if="formColumns.columns.observacao" scope="col"
+									class="px-4 text-sm cursor-pointer text-center border-r group"
+									@click="orderBy = { column: 'observacao', sorting: sortTable(sortVal.observacao) ? sortVal.observacao = 1 : sortVal.observacao = 0 }">
+									<div class="flex">
+										<span class="group-hover:text-indigo-800">Observação</span>
+										<svg xmlns="http://www.w3.org/2000/svg"
+											class="h-5 w-5 ml-auto group-hover:text-indigo-800" fill="none"
+											viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+											<path stroke-linecap="round" stroke-linejoin="round"
+												d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+										</svg>
+									</div>
+								</th>
+
+						
 								<th v-if="formColumns.columns.status" scope="col"
 									class="px-4 text-sm cursor-pointer text-center border-r group"
 									@click="orderBy = { column: 'status', sorting: sortTable(sortVal.status) ? sortVal.status = 1 : sortVal.status = 0 }">
@@ -348,11 +505,88 @@
 										</div>
 									</div>
 								</td>
+
+								<td v-if="formColumns?.columns?.modelo"
+									class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+									<div class="flex items-center">
+										<div>
+											<div class="font-medium text-gray-900">{{ data?.modelo }}</div>
+										</div>
+									</div>
+								</td>
+
+								<td v-if="formColumns?.columns?.nome_dono"
+									class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+									<div class="flex items-center">
+										<div>
+											<div class="font-medium text-gray-900">{{ data?.nome_dono }}</div>
+										</div>
+									</div>
+								</td>
+
+								<td v-if="formColumns?.columns?.marca"
+									class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+									<div class="flex items-center">
+										<div>
+											<div class="font-medium text-gray-900">{{ data?.marca }}</div>
+										</div>
+									</div>
+								</td>
+
+								<td v-if="formColumns?.columns?.cor"
+									class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+									<div class="flex items-center">
+										<div>
+											<div class="font-medium text-gray-900">{{ data?.cor }}</div>
+										</div>
+									</div>
+								</td>
+
+								<td v-if="formColumns?.columns?.anexo"
+									class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+									<div class="flex items-center">
+										<div>
+											<div class="font-medium text-gray-900">{{ data?.anexo }}</div>
+										</div>
+									</div>
+								</td>
+
+								<td v-if="formColumns?.columns?.ano_fabricacao"
+									class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+									<div class="flex items-center">
+										<div>
+											<div class="font-medium text-gray-900">{{ data?.ano_fabricacao }}</div>
+										</div>
+									</div>
+								</td>
+
+								<td v-if="formColumns?.columns?.quilometragem"
+									class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+									<div class="flex items-center">
+										<div>
+											<div class="font-medium text-gray-900">{{ data?.quilometragem }}</div>
+										</div>
+									</div>
+								</td>
+
+								<td v-if="formColumns?.columns?.garantia"
+									class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+									<div class="flex items-center">
+										<div>
+											<div class="font-medium text-gray-900">{{ data?.garantia }}</div>
+										</div>
+									</div>
+								</td>
+
+								<td v-if="formColumns?.columns?.observacao"
+									class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+									<div class="flex items-center">
+										<div>
+											<div class="font-medium text-gray-900">{{ data?.observacao }}</div>
+										</div>
+									</div>
+								</td>
 								
-
-
-
-
 
 								<td v-if="formColumns?.columns?.status"
 									class="whitespace-nowrap px-3 py-4 text-sm text-gray-500  text-center">
@@ -461,13 +695,14 @@ const sortVal = {
 
 	nome: 1,
 	modelo: 1,
+	nome_dono: 1,
 	marca: 1,
 	cor: 1,
 	anexo: 1,
-	valor_compra: 1,
+	ano_fabricacao: 1,
+	quilometragem: 1,
+	garantia: 1,
 	observacao: 1,
-	
-
 	status: 1,
 	created_at: 1,
 };
@@ -478,13 +713,15 @@ const formColumns = useForm({
 
 		nome: validateColumnsVisibility("nome"),
 		modelo: validateColumnsVisibility("modelo"),
+		nome_dono: validateColumnsVisibility("nome_dono"),
 		marca: validateColumnsVisibility("marca"),
 		cor: validateColumnsVisibility("cor"),
 		anexo: validateColumnsVisibility("anexo"),
-		valor_compra: validateColumnsVisibility("valor_compra"),
+		ano_fabricacao: validateColumnsVisibility("ano_fabricacao"),
+		quilometragem: validateColumnsVisibility("quilometragem"),
+		garantia: validateColumnsVisibility("garantia"),
 		observacao: validateColumnsVisibility("observacao"),
-	
-
+		
 		status: validateColumnsVisibility("status"),
 		created_at: validateColumnsVisibility("created_at"),
 	},
@@ -494,10 +731,13 @@ const form2 = useForm({
 
 	nome: props.Filtros?.nome || null,
 	modelo: props.Filtros?.modelo || null,
+	nome_dono: props.Filtros?.nome_dono || null,
 	marca: props.Filtros?.marca || null,
-	cor: props.Filtros?.cor || null,
+	cor: props.Filtros?.nome || null,
 	anexo: props.Filtros?.anexo || null,
-	valor_compra: props.Filtros?.valor_compra || null,
+	ano_fabricacao: props.Filtros?.ano_fabricacao || null,
+	quilometragem: props.Filtros?.quilometragem || null,
+	garantia: props.Filtros?.garantia || null,
 	observacao: props.Filtros?.observacao || null,
 	
 	status: {value: props.Filtros?.status || '0'},
