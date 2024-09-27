@@ -14,7 +14,8 @@ use App\Http\Controllers\SMTP;
 use App\Http\Controllers\ConfigCarros;
 use App\Http\Controllers\ConfigMotos;
 use App\Http\Controllers\AgendamentosController;
-use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\ConfigClientes;
+use App\Http\Controllers\ConfigServicos;
 use App\Http\Controllers\HistoricosController;
 
 // ALTERAHEAD
@@ -202,17 +203,31 @@ Route::middleware(['auth', 'has.temp.password'])->group(function () {
     Route::get('HistoricosController/RelatorioExcel', [HistoricosController::class, 'exportarRelatorioExcel'])->name('get.Excel.HistoricosController');
     
     /* Routes Clientes */
-    Route::get('ClientesController', [ClientesController::class, 'index'])->name('list.ClientesController');
-    Route::post('ClientesController', [ClientesController::class, 'index'])->name('listP.ClientesController');
-    Route::get('ClientesController/criar', [ClientesController::class, 'create'])->name('form.store.ClientesController');
-    Route::post('ClientesController/criar', [ClientesController::class, 'store'])->name('store.ClientesController');
-    Route::get('ClientesController/editar/{id}', [ClientesController::class, 'edit'])->name('form.update.ClientesController');
-    Route::post('ClientesController/editar/{id}', [ClientesController::class, 'update'])->name('update.ClientesController');
-    Route::post('ClientesController/deletar/{id}', [ClientesController::class, 'delete'])->name('delete.ClientesController');
-    Route::post('ClientesController/deletarSelecionados/{id?}', [ClientesController::class, 'deleteSelected'])->name('deleteSelected.ClientesController');
-    Route::post('ClientesController/deletarTodos', [ClientesController::class, 'deletarTodos'])->name('deletarTodos.ClientesController');
-    Route::post('ClientesController/RestaurarTodos', [ClientesController::class, 'RestaurarTodos'])->name('RestaurarTodos.ClientesController');
-    Route::get('ClientesController/RelatorioExcel', [ClientesController::class, 'exportarRelatorioExcel'])->name('get.Excel.ClientesController');
+    Route::get('ConfigClientes', [ConfigClientes::class, 'index'])->name('list.ConfigClientes');
+    Route::post('ConfigClientes', [ConfigClientes::class, 'index'])->name('listP.ConfigClientes');
+    Route::get('ConfigClientes/criar', [ConfigClientes::class, 'create'])->name('form.store.ConfigClientes');
+    Route::post('ConfigClientes/criar', [ConfigClientes::class, 'store'])->name('store.ConfigClientes');
+    Route::get('ConfigClientes/editar/{id}', [ConfigClientes::class, 'edit'])->name('form.update.ConfigClientes');
+    Route::post('ConfigClientes/editar/{id}', [ConfigClientes::class, 'update'])->name('update.ConfigClientes');
+    Route::post('ConfigClientes/deletar/{id}', [ConfigClientes::class, 'delete'])->name('delete.ConfigClientes');
+    Route::post('ConfigClientes/deletarSelecionados/{id?}', [ConfigClientes::class, 'deleteSelected'])->name('deleteSelected.ConfigClientes');
+    Route::post('ConfigClientes/deletarTodos', [ConfigClientes::class, 'deletarTodos'])->name('deletarTodos.ConfigClientes');
+    Route::post('ConfigClientes/RestaurarTodos', [ConfigClientes::class, 'RestaurarTodos'])->name('RestaurarTodos.ConfigClientes');
+    Route::get('ConfigClientes/RelatorioExcel', [ConfigClientes::class, 'exportarRelatorioExcel'])->name('get.Excel.ConfigClientes');
+
+    /* Routes Servicos */
+
+    Route::get('ConfigServicos', [ConfigServicos::class, 'index'])->name('list.ConfigServicos');
+    Route::post('ConfigServicos', [ConfigServicos::class, 'index'])->name('listP.ConfigServicos');
+    Route::get('ConfigServicos/criar', [ConfigServicos::class, 'create'])->name('form.store.ConfigServicos');
+    Route::post('ConfigServicos/criar', [ConfigServicos::class, 'store'])->name('store.ConfigServicos');
+    Route::get('ConfigServicos/editar/{id}', [ConfigServicos::class, 'edit'])->name('form.update.ConfigServicos');
+    Route::post('ConfigServicos/editar/{id}', [ConfigServicos::class, 'update'])->name('update.ConfigServicos');
+    Route::post('ConfigServicos/deletar/{id}', [ConfigServicos::class, 'delete'])->name('delete.ConfigServicos');
+    Route::post('ConfigServicos/deletarSelecionados/{id?}', [ConfigServicos::class, 'deleteSelected'])->name('deleteSelected.ConfigServicos');
+    Route::post('ConfigServicos/deletarTodos', [ConfigServicos::class, 'deletarTodos'])->name('deletarTodos.ConfigServicos');
+    Route::post('ConfigServicos/RestaurarTodos', [ConfigServicos::class, 'RestaurarTodos'])->name('RestaurarTodos.ConfigServicos');
+    Route::get('ConfigServicos/RelatorioExcel', [ConfigServicos::class, 'exportarRelatorioExcel'])->name('get.Excel.ConfigServicos');
     
     // #ModificaAqui
 

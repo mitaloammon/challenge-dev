@@ -11,7 +11,7 @@
           <header class="px-5 py-4 border-b border-gray-100 flex items-center">
           <h2>Permissões</h2>
             <div class="ml-auto space-x-2 items-center text-sm">
-              <Checkbox id="selectAll" @click="markAll(range(1, 353))" v-model="selectedAll" placeholder="Select all" class="ml-auto" :binary="true" />
+              <Checkbox id="selectAll" @click="markAll(range(1, 378))" v-model="selectedAll" placeholder="Select all" class="ml-auto" :binary="true" />
               <label for="selectAll" v-if="!selectedAll">Marcar Todos</label>
               <label for="selectAll" v-else>Desmarcar Todos</label>
             </div>
@@ -109,29 +109,59 @@
                 <tr>
                   <td class='p-2 whitespace-nowrap'>
                     <div class='flex items-center'>
-                    <div class='font-medium text-gray-800'>Motos</div>
+                    <div class='font-medium text-gray-800'>Clientes</div>
                     </div>
                   </td>
                   <td class='p-2 text-center'>
-                    <Checkbox @click='markLine(range(349, 353), 7)' v-model='lineChecked' class='ml-auto' :value='7' />
+                    <Checkbox @click='markLine(range(369, 373), 11)' v-model='lineChecked' class='ml-auto' :value='11' />
                   </td>
                   <td class='p-2 whitespace-nowrap text-center'>
-                  <Checkbox v-model='checked' :value='349' />
+                  <Checkbox v-model='checked' :value='369' />
                   </td>
                   <td class='p-2 whitespace-nowrap text-center'>
-                  <Checkbox v-model='checked' :value='350' />
+                  <Checkbox v-model='checked' :value='370' />
 
                   </td>
                   <td class='p-2 whitespace-nowrap text-center'>
-                  <Checkbox v-model='checked' :value='351' />
+                  <Checkbox v-model='checked' :value='371' />
 
                   </td>
                   <td class='p-2 whitespace-nowrap text-center'>
-                  <Checkbox v-model='checked' :value='352' />
+                  <Checkbox v-model='checked' :value='372' />
 
                   </td>
                   <td class='p-2 whitespace-nowrap text-center'>
-                  <Checkbox v-model='checked' :value='353' />
+                  <Checkbox v-model='checked' :value='373' />
+
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class='p-2 whitespace-nowrap'>
+                    <div class='flex items-center'>
+                    <div class='font-medium text-gray-800'>Serviços</div>
+                    </div>
+                  </td>
+                  <td class='p-2 text-center'>
+                    <Checkbox @click='markLine(range(374, 378), 12)' v-model='lineChecked' class='ml-auto' :value='12' />
+                  </td>
+                  <td class='p-2 whitespace-nowrap text-center'>
+                  <Checkbox v-model='checked' :value='374' />
+                  </td>
+                  <td class='p-2 whitespace-nowrap text-center'>
+                  <Checkbox v-model='checked' :value='375' />
+
+                  </td>
+                  <td class='p-2 whitespace-nowrap text-center'>
+                  <Checkbox v-model='checked' :value='376' />
+
+                  </td>
+                  <td class='p-2 whitespace-nowrap text-center'>
+                  <Checkbox v-model='checked' :value='377' />
+
+                  </td>
+                  <td class='p-2 whitespace-nowrap text-center'>
+                  <Checkbox v-model='checked' :value='378' />
 
                   </td>
                 </tr>

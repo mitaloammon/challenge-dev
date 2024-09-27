@@ -13539,7 +13539,7 @@ CREATE TABLE `agendamentos` (
 ) COLLATE='utf8mb4_unicode_ci' ENGINE=InnoDB AUTO_INCREMENT=23;
 
 
-CREATE TABLE `servicos` (
+CREATE TABLE `config_servicos` (
 	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 	`descricao` TEXT NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
 	`preco` DECIMAL(10,2) NOT NULL,
@@ -13552,7 +13552,7 @@ CREATE TABLE `servicos` (
 ) COLLATE='utf8mb4_unicode_ci' ENGINE=InnoDB AUTO_INCREMENT=23;
 
 
-CREATE TABLE `clientes` (
+CREATE TABLE `config_clientes` (
 	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 	`nome` VARCHAR(500) NULL DEFAULT NULL COLLATE 'utf8mb4_unicode_ci',
 	`telefone` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_unicode_ci',

@@ -277,9 +277,9 @@
 	
 				$save = new stdClass;
 				$save->pagina = $request->pagina;
-$save->modulo = $request->modulo;
-$save->erro = $request->erro;
-$save->erro_completo = $request->erro_completo;
+				$save->modulo = $request->modulo;
+				$save->erro = $request->erro;
+				$save->erro_completo = $request->erro_completo;
 
 
 				$save->token = md5(date("Y-m-d H:i:s").rand(0,999999999));
@@ -291,7 +291,7 @@ $save->erro_completo = $request->erro_completo;
 					->where("token", $id)
 					->update($save);
 
-				$AcaoID = $this->return_id($IDlogsErros);
+				$AcaoID = $this->return_id(isset($IDlogsErros));
 
 				$Acao = "Edited a record in the Module of LogsErros";
 				$Logs = new logs; 

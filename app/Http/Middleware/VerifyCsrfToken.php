@@ -13,12 +13,5 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
-        /* Listagem para via de testes no back end da aplicação utilizando o Postman API */
-        
-        'http://localhost:8000/ConfigMotos',
-        'http://localhost:8000/ConfigCarros',
-        'http://localhost:8000/ClientesController',
-        'http://localhost:8000/HistoricosController',
-        'http://localhost:8000/AgendamentosController'
     ];
 }
